@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miredo 沙發色彩搭配</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --seat-color: #607898;
+      --pillow-color: #8898A8;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background: #f0ece6;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #fff;
+      padding: 14px 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      margin-bottom: 28px;
+    }
+
+    header h1 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #3a3a3a;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    /* ── 沙發預覽 ── */
+    .preview { flex: 1; min-width: 0; }
+
+    .sofa-frame {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+    }
+
+    .sofa-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .sofa-frame svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* 坐墊區塊 */
+    .seat-desat { fill: white;              mix-blend-mode: saturation; }
+    .seat-color { fill: var(--seat-color);  mix-blend-mode: color; transition: fill 0.3s ease; }
+
+    /* 靠枕區塊 */
+    .pillow-desat { fill: white;               mix-blend-mode: saturation; }
+    .pillow-color { fill: var(--pillow-color); mix-blend-mode: color; transition: fill 0.3s ease; }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    /* ── 側欄面板 ── */
+    .panels { width: 296px; flex-shrink: 0; }
+
+    .panel {
+      background: #fff;
+      border-radius: 12px;
+      padding: 18px 16px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+
+    .panel-label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #c0bdb8;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .selected-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      min-height: 32px;
+    }
+
+    .selected-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.12);
+      flex-shrink: 0;
+      transition: background 0.3s ease;
+      background: #e0e0e0;
+    }
+
+    .selected-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    /* 色票格線 */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+    }
+
+    .sw-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .swatch {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      outline: 2px solid transparent;
+      outline-offset: 1px;
+      transition: transform 0.13s ease, border-color 0.13s ease;
+      position: relative;
+    }
+
+    .swatch:hover {
+      transform: scale(1.18);
+      z-index: 1;
+    }
+
+    .swatch.active {
+      border-color: #222;
+      outline-color: rgba(0,0,0,0.18);
+      transform: scale(1.1);
+    }
+
+    .sw-name {
+      font-size: 0.52rem;
+      color: #aaa;
+      text-align: center;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── RWD ── */
+    @media (max-width: 720px) {
+      .container { flex-direction: column; }
+      .panels { width: 100%; }
+      .swatches { grid-template-columns: repeat(7, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MIREDO &nbsp;·&nbsp; 沙發色彩搭配預覽</h1>
+</header>
+
+<div class="container">
+
+  <!-- 沙發圖 + SVG疊層 -->
+  <div class="preview">
+    <div class="sofa-frame">
+      <img src="沙發本體分為坐墊與靠枕不同區塊.jpg" alt="Miredo 沙發">
+      <svg viewBox="0 0 900 675" preserveAspectRatio="none">
+
+        <!-- 坐墊本體：先去色，再上色 -->
+        <polygon class="seat-desat" points="75,228 655,228 655,278 878,278 878,582 75,582"/>
+        <polygon class="seat-color"  points="75,228 655,228 655,278 878,278 878,582 75,582"/>
+
+        <!-- 靠枕（三個）：先去色，再上色 -->
+        <polygon class="pillow-desat" points="118,56 268,56 268,220 118,220"/>
+        <polygon class="pillow-desat" points="286,44 465,44 465,220 286,220"/>
+        <polygon class="pillow-desat" points="466,56 626,56 626,220 466,220"/>
+
+        <polygon class="pillow-color" points="118,56 268,56 268,220 118,220"/>
+        <polygon class="pillow-color" points="286,44 465,44 465,220 286,220"/>
+        <polygon class="pillow-color" points="466,56 626,56 626,220 466,220"/>
+
+      </svg>
+    </div>
+    <p class="note">色彩預覽為模擬效果，實際色彩請以布料色票為準</p>
+  </div>
+
+  <!-- 選色面板 -->
+  <div class="panels">
+
+    <div class="panel">
+      <div class="panel-label">坐墊 · 本體</div>
+      <div class="selected-row">
+        <div class="selected-dot" id="seatDot"></div>
+        <div class="selected-name" id="seatName">請選擇顏色</div>
+      </div>
+      <div class="swatches" id="seatSwatches"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">靠枕</div>
+      <div class="selected-row">
+        <div class="selected-dot" id="pillowDot"></div>
+        <div class="selected-name" id="pillowName">請選擇顏色</div>
+      </div>
+      <div class="swatches" id="pillowSwatches"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const SEAT = [
+  { id:'7901', name:'米黃色', hex:'#D4C4A0' },
+  { id:'7902', name:'奶茶色', hex:'#C4A882' },
+  { id:'7903', name:'綠豆色', hex:'#B8C890' },
+  { id:'7904', name:'淺棕色', hex:'#C0A078' },
+  { id:'7905', name:'青綠色', hex:'#6EA898' },
+  { id:'7906', name:'淺紫色', hex:'#B098B8' },
+  { id:'7907', name:'藍色',   hex:'#5870B0' },
+  { id:'7908', name:'草綠色', hex:'#789060' },
+  { id:'7909', name:'灰藍色', hex:'#7888A0' },
+  { id:'7910', name:'灰色',   hex:'#909090' },
+  { id:'7911', name:'褐色',   hex:'#806050' },
+  { id:'7912', name:'深灰藍', hex:'#507878' },
+  { id:'7913', name:'智臻色', hex:'#607898' },
+  { id:'7914', name:'紫色',   hex:'#806898' },
+  { id:'7915', name:'湛藍色', hex:'#2858A0' },
+  { id:'7916', name:'棕色',   hex:'#704838' },
+  { id:'7917', name:'藍綠色', hex:'#3878A0' },
+  { id:'7918', name:'芝麻黑', hex:'#383838' },
+];
+
+const PILLOW = [
+  { id:'V123-01', name:'型花白', hex:'#E8E8E4' },
+  { id:'V123-02', name:'冰晶灰', hex:'#D0D0CC' },
+  { id:'V123-03', name:'星際灰', hex:'#A8A8A4' },
+  { id:'V123-04', name:'神秘灰', hex:'#888884' },
+  { id:'V123-05', name:'紳士藍', hex:'#506080' },
+  { id:'V123-06', name:'水墨素', hex:'#585858' },
+  { id:'V123-07', name:'睿智黑', hex:'#303030' },
+  { id:'V123-15', name:'奶茶棕', hex:'#C8B090' },
+  { id:'V123-16', name:'珍珠灰', hex:'#D0CCBC' },
+  { id:'V123-17', name:'淺苔綠', hex:'#A8B090' },
+  { id:'V123-18', name:'神秘灰', hex:'#787C78' },
+  { id:'V123-19', name:'冰川藍', hex:'#8898A8' },
+  { id:'V123-20', name:'海洋藍', hex:'#507898' },
+  { id:'V123-21', name:'尊貴藍', hex:'#2848A0' },
+];
+
+const root = document.documentElement;
+
+function renderSwatches(list, containerId, type) {
+  const container = document.getElementById(containerId);
+  list.forEach(c => {
+    const wrap = document.createElement('div');
+    wrap.className = 'sw-wrap';
+    wrap.innerHTML = `
+      <div class="swatch"
+           style="background:${c.hex}"
+           data-hex="${c.hex}"
+           data-type="${type}"
+           data-label="${c.id} ${c.name}"
+           title="${c.id} ${c.name}"></div>
+      <div class="sw-name">${c.name}</div>`;
+    container.appendChild(wrap);
+  });
+}
+
+renderSwatches(SEAT,   'seatSwatches',   'seat');
+renderSwatches(PILLOW, 'pillowSwatches', 'pillow');
+
+document.addEventListener('click', e => {
+  const sw = e.target.closest('.swatch');
+  if (!sw) return;
+
+  const { hex, type, label } = sw.dataset;
+
+  document.querySelectorAll(`.swatch[data-type="${type}"]`)
+    .forEach(s => s.classList.remove('active'));
+  sw.classList.add('active');
+
+  if (type === 'seat') {
+    root.style.setProperty('--seat-color', hex);
+    document.getElementById('seatDot').style.background = hex;
+    document.getElementById('seatName').textContent = label;
+  } else {
+    root.style.setProperty('--pillow-color', hex);
+    document.getElementById('pillowDot').style.background = hex;
+    document.getElementById('pillowName').textContent = label;
+  }
+});
+</script>
+</body>
+</html>
