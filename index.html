@@ -125,7 +125,6 @@
       color: #555;
     }
 
-    /* 色票格線 */
     .swatches {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -151,11 +150,7 @@
       position: relative;
     }
 
-    .swatch:hover {
-      transform: scale(1.18);
-      z-index: 1;
-    }
-
+    .swatch:hover { transform: scale(1.18); z-index: 1; }
     .swatch.active {
       border-color: #222;
       outline-color: rgba(0,0,0,0.18);
@@ -172,7 +167,6 @@
       white-space: nowrap;
     }
 
-    /* ── RWD ── */
     @media (max-width: 720px) {
       .container { flex-direction: column; }
       .panels { width: 100%; }
@@ -188,41 +182,25 @@
 
 <div class="container">
 
-  <!-- 沙發圖 + SVG疊層 -->
   <div class="preview">
     <div class="sofa-frame">
       <img src="沙發本體分為坐墊與靠枕不同區塊.jpg" alt="Miredo 沙發">
-      <svg viewBox="0 0 900 675" preserveAspectRatio="none">
+      <svg viewBox="0 0 900 675">
 
-        <!-- 坐墊本體：先去色，再上色 -->
-        <polygon class="seat-desat" points="75,228 655,228 655,278 878,278 878,582 75,582"/>
-        <polygon class="seat-color"  points="75,228 655,228 655,278 878,278 878,582 75,582"/>
+        <!-- 沙發本體（含左扶手凸起 + 座墊 + 貴妃椅）：先去色，再上色 -->
+        <polygon class="seat-desat" points="20,170 95,175 95,228 725,228 725,290 820,290 820,560 20,560"/>
+        <polygon class="seat-color"  points="20,170 95,175 95,228 725,228 725,290 820,290 820,560 20,560"/>
 
-        <!-- 靠枕（三個）：先去色，再上色 -->
-        <polygon class="pillow-desat" points="118,56 268,56 268,220 118,220"/>
-        <polygon class="pillow-desat" points="286,44 465,44 465,220 286,220"/>
-        <polygon class="pillow-desat" points="466,56 626,56 626,220 466,220"/>
-
-        <polygon class="pillow-color" points="118,56 268,56 268,220 118,220"/>
-        <polygon class="pillow-color" points="286,44 465,44 465,220 286,220"/>
-        <polygon class="pillow-color" points="466,56 626,56 626,220 466,220"/>
+        <!-- 靠枕（整片背靠區一個長方形）：先去色，再上色 -->
+        <polygon class="pillow-desat" points="95,55 725,55 725,228 95,228"/>
+        <polygon class="pillow-color" points="95,55 725,55 725,228 95,228"/>
 
       </svg>
     </div>
     <p class="note">色彩預覽為模擬效果，實際色彩請以布料色票為準</p>
   </div>
 
-  <!-- 選色面板 -->
   <div class="panels">
-
-    <div class="panel">
-      <div class="panel-label">坐墊 · 本體</div>
-      <div class="selected-row">
-        <div class="selected-dot" id="seatDot"></div>
-        <div class="selected-name" id="seatName">請選擇顏色</div>
-      </div>
-      <div class="swatches" id="seatSwatches"></div>
-    </div>
 
     <div class="panel">
       <div class="panel-label">靠枕</div>
@@ -231,6 +209,15 @@
         <div class="selected-name" id="pillowName">請選擇顏色</div>
       </div>
       <div class="swatches" id="pillowSwatches"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">坐墊 · 本體</div>
+      <div class="selected-row">
+        <div class="selected-dot" id="seatDot"></div>
+        <div class="selected-name" id="seatName">請選擇顏色</div>
+      </div>
+      <div class="swatches" id="seatSwatches"></div>
     </div>
 
   </div>
