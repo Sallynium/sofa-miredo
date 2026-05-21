@@ -68,11 +68,11 @@
 
     /* 坐墊區塊 */
     .seat-desat { fill: white;              mix-blend-mode: saturation; }
-    .seat-color { fill: var(--seat-color);  mix-blend-mode: color; transition: fill 0.3s ease; }
+    .seat-color { fill: var(--seat-color);  mix-blend-mode: overlay; transition: fill 0.3s ease; }
 
     /* 靠枕區塊 */
     .pillow-desat { fill: white;               mix-blend-mode: saturation; }
-    .pillow-color { fill: var(--pillow-color); mix-blend-mode: color; transition: fill 0.3s ease; }
+    .pillow-color { fill: var(--pillow-color); mix-blend-mode: overlay; transition: fill 0.3s ease; }
 
     .note {
       margin-top: 10px;
@@ -226,41 +226,41 @@
 
 <script>
 const SEAT = [
-  { id:'7901', name:'米黃色', hex:'#D4C4A0' },
-  { id:'7902', name:'奶茶色', hex:'#C4A882' },
-  { id:'7903', name:'綠豆色', hex:'#B8C890' },
-  { id:'7904', name:'淺棕色', hex:'#C0A078' },
-  { id:'7905', name:'青綠色', hex:'#6EA898' },
-  { id:'7906', name:'淺紫色', hex:'#B098B8' },
-  { id:'7907', name:'藍色',   hex:'#5870B0' },
-  { id:'7908', name:'草綠色', hex:'#789060' },
-  { id:'7909', name:'灰藍色', hex:'#7888A0' },
-  { id:'7910', name:'灰色',   hex:'#909090' },
-  { id:'7911', name:'褐色',   hex:'#806050' },
-  { id:'7912', name:'深灰藍', hex:'#507878' },
-  { id:'7913', name:'智臻色', hex:'#607898' },
-  { id:'7914', name:'紫色',   hex:'#806898' },
-  { id:'7915', name:'湛藍色', hex:'#2858A0' },
-  { id:'7916', name:'棕色',   hex:'#704838' },
-  { id:'7917', name:'藍綠色', hex:'#3878A0' },
-  { id:'7918', name:'芝麻黑', hex:'#383838' },
+  { id:'7901', name:'米黃色', hex:'#D6D1C4' },
+  { id:'7902', name:'奶茶色', hex:'#C8BAA7' },
+  { id:'7903', name:'綠豆色', hex:'#B2BBAA' },
+  { id:'7904', name:'淺棕色', hex:'#9B8C82' },
+  { id:'7905', name:'青綠色', hex:'#7D9D99' },
+  { id:'7906', name:'淺紫色', hex:'#8B828B' },
+  { id:'7907', name:'藍色',   hex:'#596E81' },
+  { id:'7908', name:'草綠色', hex:'#6A7964' },
+  { id:'7909', name:'灰藍色', hex:'#64707A' },
+  { id:'7910', name:'灰色',   hex:'#9FA3A0' },
+  { id:'7911', name:'褐色',   hex:'#695E5C' },
+  { id:'7912', name:'墨綠色', hex:'#5A655D' },
+  { id:'7913', name:'碧綠色', hex:'#728979' },
+  { id:'7914', name:'紫色',   hex:'#66545C' },
+  { id:'7915', name:'湛藍色', hex:'#4D5F6C' },
+  { id:'7916', name:'棕色',   hex:'#7A6153' },
+  { id:'7917', name:'藍綠色', hex:'#4B615F' },
+  { id:'7918', name:'芝麻黑', hex:'#4E5050' },
 ];
 
 const PILLOW = [
-  { id:'V123-01', name:'型花白', hex:'#E8E8E4' },
-  { id:'V123-02', name:'冰晶灰', hex:'#D0D0CC' },
-  { id:'V123-03', name:'星際灰', hex:'#A8A8A4' },
-  { id:'V123-04', name:'神秘灰', hex:'#888884' },
-  { id:'V123-05', name:'紳士藍', hex:'#506080' },
-  { id:'V123-06', name:'水墨素', hex:'#585858' },
-  { id:'V123-07', name:'睿智黑', hex:'#303030' },
-  { id:'V123-15', name:'奶茶棕', hex:'#C8B090' },
-  { id:'V123-16', name:'珍珠灰', hex:'#D0CCBC' },
-  { id:'V123-17', name:'淺苔綠', hex:'#A8B090' },
-  { id:'V123-18', name:'神秘灰', hex:'#787C78' },
-  { id:'V123-19', name:'冰川藍', hex:'#8898A8' },
-  { id:'V123-20', name:'海洋藍', hex:'#507898' },
-  { id:'V123-21', name:'尊貴藍', hex:'#2848A0' },
+  { id:'V123-01', name:'梨花白', hex:'#C8C9C7' },
+  { id:'V123-02', name:'冰晶灰', hex:'#A6A7A6' },
+  { id:'V123-03', name:'星際灰', hex:'#8C8B8A' },
+  { id:'V123-04', name:'神秘灰', hex:'#747574' },
+  { id:'V123-05', name:'紳士藍', hex:'#5F6266' },
+  { id:'V123-06', name:'水墨黑', hex:'#464445' },
+  { id:'V123-07', name:'睿智黑', hex:'#363737' },
+  { id:'V123-15', name:'奶茶棕', hex:'#C1B8A7' },
+  { id:'V123-16', name:'珍珠灰', hex:'#A9ACB1' },
+  { id:'V123-17', name:'淺豆綠', hex:'#929B9C' },
+  { id:'V123-18', name:'神秘灰', hex:'#838B90' },
+  { id:'V123-19', name:'冰川藍', hex:'#6D8494' },
+  { id:'V123-20', name:'海洋藍', hex:'#526777' },
+  { id:'V123-21', name:'尊貴藍', hex:'#303F46' },
 ];
 
 const root = document.documentElement;
